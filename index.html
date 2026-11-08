@@ -3,425 +3,799 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Biblioteca Natural para Gatos</title>
-<meta name="description" content="Recetas naturales, sobrecitos, premios y cuidados para tu gato. Todo en línea, sin descargar nada.">
-<meta name="theme-color" content="#070b16">
+<title>Club Gatito Feliz</title>
+<meta name="description" content="Tu área de miembros: clases en video, recetas naturales y herramientas inteligentes para tu gato.">
+<meta name="theme-color" content="#04050d">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#070b16; --bg2:#0d1324; --card:rgba(255,255,255,.055); --card2:rgba(255,255,255,.09);
-  --line:rgba(255,255,255,.10); --txt:#eef2ff; --muted:#9aa6c4; --acc:#2ee6a6; --acc2:#7aa2ff; --hot:#ff9f43;
-  --r:20px; --sh:0 20px 60px rgba(0,0,0,.45);
+  --bg:#04050d; --bg2:#0a0d1c; --glass:rgba(255,255,255,.045); --glass2:rgba(255,255,255,.08);
+  --line:rgba(160,180,255,.14); --txt:#eef1ff; --muted:#8f9bc2;
+  --cy:#3ef2ff; --vi:#8b5cff; --pk:#ff4fd8; --gr:#3dffb0; --am:#ffc857;
+  --grad:linear-gradient(120deg,#3ef2ff,#8b5cff 50%,#ff4fd8);
+  --r:22px; --sh:0 24px 70px rgba(0,0,0,.55);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
-html,body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.6 Inter,system-ui,sans-serif}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:15.5px/1.6 Inter,system-ui,sans-serif}
 body{min-height:100vh;overflow-x:hidden}
-.orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.orbs i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;animation:flota 18s ease-in-out infinite alternate}
-.orbs i:nth-child(1){width:420px;height:420px;background:#2ee6a6;left:-120px;top:-80px}
-.orbs i:nth-child(2){width:380px;height:380px;background:#7a5cff;right:-140px;top:30vh;animation-delay:-6s}
-.orbs i:nth-child(3){width:340px;height:340px;background:#ff7a59;left:20vw;bottom:-160px;animation-delay:-11s;opacity:.22}
-@keyframes flota{to{transform:translate(60px,40px) scale(1.15)}}
-.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse at top,#000 30%,transparent 75%)}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+h1,h2,h3,h4{font-family:"Space Grotesk",sans-serif;letter-spacing:-.02em;line-height:1.12;margin:0}
+.mono{font-family:"JetBrains Mono",monospace;letter-spacing:.04em}
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- fondo ---------- */
+#fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.aurora{position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(80px);opacity:.55;
+  background:radial-gradient(40% 35% at 15% 10%,rgba(62,242,255,.35),transparent 70%),radial-gradient(35% 30% at 85% 25%,rgba(139,92,255,.45),transparent 70%),radial-gradient(40% 35% at 50% 95%,rgba(255,79,216,.22),transparent 70%);
+  animation:aur 22s ease-in-out infinite alternate}
+@keyframes aur{to{transform:translate(4%,3%) rotate(8deg) scale(1.08)}}
+.gridbg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(120,150,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(120,150,255,.06) 1px,transparent 1px);background-size:38px 38px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 35%,transparent 80%)}
+.scan{position:fixed;left:0;right:0;height:120px;z-index:0;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(62,242,255,.05),transparent);animation:scan 9s linear infinite}
+@keyframes scan{from{top:-120px}to{top:100vh}}
 #app{position:relative;z-index:1}
 
-/* barra superior */
-.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));background:rgba(7,11,22,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.logo{display:flex;align-items:center;gap:10px;font:700 17px/1 "Space Grotesk";letter-spacing:-.01em;min-width:0}
-.logo b{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#2ee6a6,#7aa2ff);font-size:19px;flex:none;box-shadow:0 0 24px rgba(46,230,166,.45)}
-.logo span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* ---------- barra superior ---------- */
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));background:rgba(4,5,13,.66);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.mini-orb{width:34px;height:34px;border-radius:50%;flex:none;position:relative;background:radial-gradient(circle at 35% 30%,#fff,#7ff6ff 18%,#8b5cff 55%,#24104d 100%);box-shadow:0 0 22px rgba(62,242,255,.55),0 0 40px rgba(139,92,255,.35);animation:respira 3.2s ease-in-out infinite}
+.mini-orb::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid transparent;border-top-color:var(--cy);border-right-color:var(--pk);animation:gira 2.4s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+@keyframes respira{50%{transform:scale(.92);filter:brightness(1.25)}}
+.brand b{display:block;font:700 16px/1.1 "Space Grotesk";white-space:nowrap}
+.brand small{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--gr)}
+.brand small i{width:6px;height:6px;border-radius:50%;background:var(--gr);box-shadow:0 0 8px var(--gr);animation:pul 1.4s infinite}
+@keyframes pul{50%{opacity:.3}}
 .top .sp{flex:1}
-.ib{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--card);border:1px solid var(--line);flex:none;transition:.2s}
-.ib:hover{background:var(--card2)}
-.ib svg{width:20px;height:20px}
+.chip-acc{display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:99px;font-size:12px;font-weight:700;border:1px solid rgba(255,200,87,.45);background:rgba(255,200,87,.1);color:var(--am);white-space:nowrap}
+.chip-acc.ok{border-color:rgba(61,255,176,.45);background:rgba(61,255,176,.1);color:var(--gr)}
+.ib{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:var(--glass);border:1px solid var(--line);flex:none}
+.ib svg{width:19px;height:19px}
 
-main{max-width:1100px;margin:0 auto;padding:20px 16px 120px}
-h1,h2,h3{font-family:"Space Grotesk",sans-serif;letter-spacing:-.02em;line-height:1.15;margin:0}
+main{max-width:1120px;margin:0 auto;padding:18px 16px 130px}
 
-/* inicio */
-.hero{padding:26px 0 8px}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:rgba(46,230,166,.12);border:1px solid rgba(46,230,166,.35);color:#9ff5d6;font-size:13.5px;font-weight:600}
-.pill i{width:8px;height:8px;border-radius:50%;background:#2ee6a6;box-shadow:0 0 10px #2ee6a6;animation:pulso 1.6s infinite}
-@keyframes pulso{50%{opacity:.35}}
-.hero h1{font-size:clamp(32px,7vw,56px);margin:16px 0 12px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,#2ee6a6,#7aa2ff 55%,#ff9f43);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--muted);max-width:640px;margin:0 0 18px;font-size:17px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 6px}
-.stat{padding:14px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-align:center}
-.stat b{display:block;font:700 26px/1.1 "Space Grotesk";background:linear-gradient(90deg,#fff,#9fb6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.stat span{font-size:12.5px;color:var(--muted)}
-.seguir{display:flex;align-items:center;gap:14px;margin:18px 0 0;padding:12px;border-radius:18px;background:linear-gradient(135deg,rgba(122,162,255,.18),rgba(46,230,166,.12));border:1px solid rgba(122,162,255,.35)}
-.seguir img{width:54px;height:54px;object-fit:cover;border-radius:12px;flex:none}
-.seguir div{flex:1;min-width:0}
-.seguir small{color:var(--muted);display:block;font-size:12.5px}
-.seguir strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sec-t{display:flex;align-items:end;justify-content:space-between;margin:34px 0 14px}
-.sec-t h2{font-size:22px}
-.sec-t span{color:var(--muted);font-size:13px}
-.libros{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
-.libro{position:relative;display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--line);transition:.25s;isolation:isolate}
-.libro:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--c) 60%,transparent);box-shadow:0 18px 50px -12px color-mix(in srgb,var(--c) 55%,transparent)}
-.libro .cv{position:relative;aspect-ratio:4/3;overflow:hidden;background:#111}
-.libro .cv img{width:100%;height:100%;object-fit:cover;object-position:top;transition:.5s}
-.libro:hover .cv img{transform:scale(1.05)}
-.libro .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,11,22,.95))}
-.libro .em{position:absolute;left:12px;bottom:10px;z-index:2;width:42px;height:42px;display:grid;place-items:center;border-radius:13px;font-size:22px;background:rgba(7,11,22,.6);backdrop-filter:blur(8px);border:1px solid color-mix(in srgb,var(--c) 70%,transparent);box-shadow:0 0 18px color-mix(in srgb,var(--c) 50%,transparent)}
-.libro .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
-.libro h3{font-size:18px}
-.libro p{margin:0;color:var(--muted);font-size:14px;line-height:1.45;flex:1}
-.meta{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:6px}
-.bar{flex:1;height:5px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
-.bar i{display:block;height:100%;background:var(--c);box-shadow:0 0 10px var(--c)}
-.tag{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11.5px;font-weight:600;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
-.fav-list{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
-.fav-list a{flex:none;display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:14px;background:var(--card);border:1px solid var(--line);max-width:280px}
-.fav-list img{width:40px;height:40px;border-radius:9px;object-fit:cover}
-.fav-list span{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.nota{margin:34px 0 0;padding:16px;border-radius:16px;background:var(--card);border:1px dashed var(--line);color:var(--muted);font-size:14px}
+/* ---------- hero IA ---------- */
+.hero{position:relative;padding:18px;border-radius:28px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,rgba(62,242,255,.08),rgba(139,92,255,.07) 45%,rgba(255,79,216,.05));box-shadow:var(--sh)}
+.hero::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;pointer-events:none}
+.hgrid{display:grid;grid-template-columns:1fr;gap:16px;align-items:center}
+.ai-row{display:flex;align-items:center;gap:14px}
+.orb{position:relative;width:78px;height:78px;flex:none}
+.orb .core{position:absolute;inset:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#9ffaff 15%,#3ef2ff 32%,#8b5cff 62%,#1a0b3d);box-shadow:0 0 30px #3ef2ff,0 0 60px rgba(139,92,255,.7);animation:respira 3s ease-in-out infinite}
+.orb .r1,.orb .r2,.orb .r3{position:absolute;border-radius:50%;border:1.5px solid transparent}
+.orb .r1{inset:4px;border-top-color:var(--cy);border-bottom-color:var(--cy);animation:gira 3s linear infinite}
+.orb .r2{inset:-2px;border-left-color:var(--pk);border-right-color:var(--vi);animation:gira 5s linear infinite reverse}
+.orb .r3{inset:-9px;border:1px dashed rgba(62,242,255,.35);animation:gira 18s linear infinite}
+.ai-tag{font-size:11px;color:var(--cy)}
+.typing{font:600 17px/1.4 "Space Grotesk";min-height:48px}
+.typing .cur{display:inline-block;width:8px;height:18px;margin-left:2px;background:var(--cy);vertical-align:-3px;animation:pul .8s steps(1) infinite}
+.hero h1{font-size:clamp(28px,7vw,46px);margin:14px 0 8px}
+.hero p.lead{color:var(--muted);margin:0 0 14px}
+.feat{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:#000;cursor:pointer;border:1px solid var(--line)}
+.feat img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:.4s}
+.feat:hover img{transform:scale(1.04);opacity:1}
+.feat .play{position:absolute;inset:0;display:grid;place-items:center}
+.playbtn{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:rgba(4,5,13,.55);backdrop-filter:blur(8px);border:1.5px solid rgba(62,242,255,.7);box-shadow:0 0 30px rgba(62,242,255,.5)}
+.playbtn svg{width:26px;height:26px;margin-left:4px;fill:#fff}
+.feat .lbl{position:absolute;left:12px;right:12px;bottom:10px;display:flex;justify-content:space-between;align-items:end;gap:8px}
+.feat .lbl b{font:700 15px/1.25 "Space Grotesk";text-shadow:0 2px 12px #000}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:99px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(4,5,13,.6);border:1px solid var(--line);backdrop-filter:blur(6px);white-space:nowrap}
+.badge.free{color:var(--gr);border-color:rgba(61,255,176,.4)}
+.badge.lock{color:var(--am);border-color:rgba(255,200,87,.45)}
 
-/* libro */
-.lhead{position:relative;display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center;padding:18px;border-radius:24px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 22%,transparent),rgba(255,255,255,.03));border:1px solid color-mix(in srgb,var(--c) 35%,transparent);overflow:hidden}
-.lhead img{width:120px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:14px;box-shadow:var(--sh)}
-.lhead h1{font-size:clamp(24px,5vw,36px);margin:8px 0}
-.lhead p{margin:0 0 12px;color:var(--muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:14px;font-weight:600;background:var(--c,var(--acc));color:#06101c;box-shadow:0 8px 26px -6px var(--c,var(--acc));transition:.2s}
-.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.btn.ghost{background:var(--card);color:var(--txt);box-shadow:none;border:1px solid var(--line)}
-.grupo{margin-top:26px}
-.grupo h3{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--c);margin:0 0 10px;display:flex;align-items:center;gap:10px}
-.grupo h3::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--c) 50%,transparent),transparent)}
-.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
-.item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:16px;background:var(--card);border:1px solid var(--line);transition:.2s;min-width:0}
-.item:hover{background:var(--card2);border-color:color-mix(in srgb,var(--c) 45%,transparent)}
-.item .th{width:56px;height:56px;border-radius:12px;flex:none;object-fit:cover;background:#1a2133}
-.item .th.ph{display:grid;place-items:center;font-size:24px}
-.item div{min-width:0;flex:1}
-.item b{display:block;font-weight:600;font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.item small{color:var(--muted);font-size:12px}
-.item .ok{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:12px;background:color-mix(in srgb,var(--c) 25%,transparent);color:var(--c)}
+/* panel de acceso */
+.acc{margin-top:16px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:14px;border-radius:20px;background:rgba(4,5,13,.5);border:1px solid var(--line)}
+.ring{--p:0;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--cy) calc(var(--p)*1%),rgba(255,255,255,.08) 0);position:relative}
+.ring::before{content:"";position:absolute;inset:6px;border-radius:50%;background:#070917}
+.ring b{position:relative;font:700 15px "Space Grotesk"}
+.acc h3{font-size:16px;margin-bottom:2px}
+.acc p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:15px;font-weight:700;font-size:15px;color:#05060f;background:var(--grad);background-size:200% 100%;box-shadow:0 10px 30px -8px rgba(139,92,255,.8),0 0 0 1px rgba(255,255,255,.12) inset;transition:.3s;animation:flow 6s linear infinite}
+@keyframes flow{to{background-position:200% 0}}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.btn.ghost{background:var(--glass);color:var(--txt);box-shadow:none;border:1px solid var(--line);animation:none}
+.btn.full{width:100%}
+.acc .btn{grid-column:1/-1}
+
+/* ---------- módulos ---------- */
+.mod{margin-top:34px}
+.mod-h{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:14px}
+.mod-n{display:inline-block;font-size:11px;padding:4px 10px;border-radius:99px;margin-bottom:8px;color:var(--cy);background:rgba(62,242,255,.08);border:1px solid rgba(62,242,255,.3)}
+.mod-h h2{font-size:clamp(22px,5.5vw,30px)}
+.mod-h p{margin:4px 0 0;color:var(--muted);font-size:13.5px}
+.mod-h .cnt{font-size:12px;color:var(--muted);white-space:nowrap}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:min(78%,320px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 16px 14px;margin:0 -16px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+@media (min-width:900px){.rail{grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));grid-auto-columns:auto;overflow:visible;margin:0;padding:4px 0}}
+.vc{scroll-snap-align:start;display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:var(--glass);border:1px solid var(--line);transition:.3s;cursor:pointer;position:relative}
+.vc:hover{transform:translateY(-4px);border-color:rgba(62,242,255,.45);box-shadow:0 20px 50px -18px rgba(62,242,255,.45)}
+.vc .th{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0b0e1f}
+.vc .th img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.vc .th .playbtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px}
+.vc .th .playbtn svg{width:20px;height:20px}
+.vc .th .badge{position:absolute;left:10px;top:10px}
+.vc .bd{padding:12px 14px 14px}
+.vc h4{font-size:15.5px;line-height:1.3}
+.vc p{margin:4px 0 0;color:var(--muted);font-size:13px;line-height:1.4}
+.prog{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:11px;color:var(--muted)}
+.prog .bar{flex:1;height:4px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
+.prog .bar i{display:block;height:100%;background:var(--grad)}
+/* bloqueado */
+.locked .th img{filter:blur(7px) saturate(.6) brightness(.55);transform:scale(1.12)}
+.locked .lk{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:6px;text-align:center}
+.lockico{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(255,200,87,.18),rgba(139,92,255,.18));border:1px solid rgba(255,200,87,.55);box-shadow:0 0 26px rgba(255,200,87,.3);position:relative;overflow:hidden}
+.lockico::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%);animation:brillo 2.8s ease-in-out infinite}
+@keyframes brillo{60%,100%{transform:translateX(100%)}}
+.lockico svg{width:24px;height:24px;stroke:var(--am)}
+.locked .lk span{font-size:10.5px;color:var(--am)}
+
+/* biblioteca */
+.libs{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.lb{position:relative;border-radius:20px;overflow:hidden;background:var(--glass);border:1px solid var(--line);transition:.3s;display:flex;flex-direction:column}
+.lb:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--c) 60%,transparent);box-shadow:0 16px 40px -16px var(--c)}
+.lb .cv{position:relative;aspect-ratio:4/3;overflow:hidden}
+.lb .cv img{width:100%;height:100%;object-fit:cover;object-position:top}
+.lb .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(4,5,13,.92))}
+.lb.locked .cv img{filter:blur(3px) brightness(.6) saturate(.7)}
+.lb .em{position:absolute;right:10px;bottom:8px;z-index:2;font-size:20px}
+.lb .lockmini{position:absolute;left:10px;top:10px;z-index:2}
+.lb .bd{padding:10px 12px 12px}
+.lb h4{font-size:14.5px;line-height:1.25}
+.lb small{display:block;color:var(--muted);font-size:11.5px;margin-top:4px}
+
+/* herramientas */
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.tl{position:relative;display:flex;gap:12px;align-items:center;padding:30px 14px 14px;border-radius:20px;background:var(--glass);border:1px solid var(--line);transition:.3s;overflow:hidden}
+.tl:hover{border-color:rgba(62,242,255,.45)}
+.tl .ic{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:24px;flex:none;background:linear-gradient(145deg,rgba(62,242,255,.16),rgba(139,92,255,.16));border:1px solid var(--line)}
+.tl b{display:block;font:700 15px/1.25 "Space Grotesk"}
+.tl small{color:var(--muted);font-size:12.5px;line-height:1.35;display:block}
+.tl .badge{position:absolute;right:10px;top:10px}
+
+/* aportación */
+.aport{margin-top:34px;padding:20px;border-radius:26px;text-align:center;background:linear-gradient(160deg,rgba(255,200,87,.1),rgba(139,92,255,.12));border:1px solid rgba(255,200,87,.3)}
+.aport .precio{font:700 54px/1 "Space Grotesk";margin:10px 0 2px}
+.aport .precio small{font-size:18px;color:var(--muted)}
+.aport ul{list-style:none;padding:0;margin:14px auto;max-width:420px;text-align:left}
+.aport li{display:flex;gap:10px;padding:7px 0;font-size:14px;border-bottom:1px dashed var(--line)}
+.aport li i{font-style:normal}
+.steps{display:grid;gap:8px;margin:14px 0;text-align:left}
+.step{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:rgba(4,5,13,.45);border:1px solid var(--line);font-size:13.5px}
+.step b{flex:none;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;font-size:12px;background:var(--grad);color:#05060f}
+
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 6px}
+@media (min-width:700px){.tiers{grid-template-columns:repeat(4,1fr)}}
+.tier{position:relative;padding:16px 8px 14px;border-radius:18px;background:rgba(4,5,13,.5);border:1px solid var(--line);text-align:center;transition:.25s}
+.tier:hover{border-color:rgba(62,242,255,.4)}
+.tier .e{font-size:24px;display:block}
+.tier b{display:block;font:700 22px/1.2 "Space Grotesk";margin-top:4px}
+.tier small{display:block;color:var(--muted);font-size:12px;line-height:1.3}
+.tier.on{border-color:var(--cy);background:linear-gradient(160deg,rgba(62,242,255,.14),rgba(139,92,255,.14));box-shadow:0 0 30px -8px var(--cy)}
+.tier.on small{color:#bff8ff}
+.tier .pop{position:absolute;left:50%;top:-9px;transform:translateX(-50%);font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--grad);color:#05060f;white-space:nowrap}
+.tusel{font-size:14px;margin-top:6px}
+.tusel b{font-family:"Space Grotesk"}
+/* ---------- modales ---------- */
+.ov{position:fixed;inset:0;z-index:60;background:rgba(2,3,9,.72);backdrop-filter:blur(10px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:.25s}
+.ov.on{opacity:1;pointer-events:auto}
+@media (min-width:700px){.ov{align-items:center}}
+.sheet{width:min(720px,100%);max-height:92vh;overflow:auto;background:linear-gradient(180deg,#0d1124,#080a17);border:1px solid var(--line);border-radius:26px 26px 0 0;padding:18px 16px max(18px,env(safe-area-inset-bottom));transform:translateY(30px);transition:.3s cubic-bezier(.2,.8,.2,1);box-shadow:var(--sh)}
+@media (min-width:700px){.sheet{border-radius:26px}}
+.ov.on .sheet{transform:none}
+.sh-h{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sh-h h3{flex:1;font-size:17px}
+.vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line)}
+.vid iframe,.vid #ytp{position:absolute;left:0;width:100%;top:-60px;height:calc(100% + 120px);border:0;pointer-events:none}
+.vid .shield{position:absolute;inset:0;z-index:2;cursor:pointer;-webkit-user-select:none;user-select:none}
+.vid .pausa{position:absolute;inset:0;z-index:3;display:grid;place-items:center;background:rgba(4,5,13,.72) center/cover no-repeat;backdrop-filter:blur(10px);transition:opacity .25s}
+.vid .pausa.off{opacity:0;pointer-events:none}
+.vid .pausa::before{content:"";position:absolute;inset:0;background:rgba(4,5,13,.55)}
+.vid .pausa .playbtn{position:relative}
+.vid .spin{position:absolute;inset:0;z-index:3;display:grid;place-items:center;pointer-events:none}
+.vid .spin i{width:38px;height:38px;border-radius:50%;border:3px solid rgba(62,242,255,.25);border-top-color:var(--cy);animation:gira .8s linear infinite}
+.vid:fullscreen{border-radius:0;border:0;aspect-ratio:auto;width:100vw;height:100vh}
+.vid:-webkit-full-screen{border-radius:0;border:0;width:100vw;height:100vh}
+.vctl{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 10px;border-radius:14px;background:rgba(4,5,13,.6);border:1px solid var(--line)}
+.vctl button{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;background:var(--glass);border:1px solid var(--line)}
+.vctl button svg{width:17px;height:17px;fill:#fff}
+.vctl input[type=range]{flex:1;min-width:0;height:22px;accent-color:#3ef2ff}
+.vctl .tm{font:600 11.5px "JetBrains Mono";color:var(--muted);white-space:nowrap}
+.vid .fsx{position:absolute;right:10px;bottom:10px;z-index:4;display:none}
+.vid:fullscreen .fsx,.vid:-webkit-full-screen .fsx{display:grid}
+.vmeta{display:flex;gap:10px;align-items:center;margin-top:12px}
+.vmeta p{flex:1;margin:0;color:var(--muted);font-size:13.5px}
+.field{display:flex;align-items:center;gap:10px;padding:4px 4px 4px 14px;border-radius:16px;background:rgba(4,5,13,.6);border:1px solid var(--line);margin-top:12px}
+.field:focus-within{border-color:var(--cy);box-shadow:0 0 0 3px rgba(62,242,255,.15)}
+.field input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--txt);font:700 18px "JetBrains Mono";letter-spacing:.12em;text-transform:uppercase;padding:10px 0}
+.term{margin-top:12px;padding:12px;border-radius:14px;background:#03040a;border:1px solid var(--line);font:500 12.5px/1.6 "JetBrains Mono";color:#7ff6ff;min-height:40px;white-space:pre-wrap}
+.term .err{color:#ff7a9c}.term .ok{color:var(--gr)}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 
 /* lector */
-.rhead{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin-bottom:12px;flex-wrap:wrap}
-.rhead a{color:var(--c)}
-.leer{max-width:760px;margin:0 auto}
-.leer h1{font-size:clamp(26px,6vw,38px);margin:6px 0 18px}
-.cont{padding:22px;border-radius:24px;background:rgba(13,19,36,.72);border:1px solid var(--line);backdrop-filter:blur(10px)}
-.cont h2{font-size:24px;margin:22px 0 10px;color:#fff}
-.cont h3{font-size:17px;margin:20px 0 8px;color:var(--c);display:flex;align-items:center;gap:8px}
-.cont h3::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--c);box-shadow:0 0 10px var(--c);transform:rotate(45deg);flex:none}
-.cont p{margin:0 0 12px;color:#d6dcf0}
+.rd{max-width:760px;margin:0 auto}
+.crumb{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.crumb a{color:var(--cy)}
+.rd h1{font-size:clamp(25px,6vw,36px);margin:4px 0 16px}
+.cont{padding:20px;border-radius:24px;background:rgba(10,13,28,.78);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.cont h2{font-size:22px;margin:20px 0 10px}
+.cont h3{font-size:16.5px;margin:18px 0 8px;color:var(--c,var(--cy));display:flex;align-items:center;gap:8px}
+.cont h3::before{content:"";width:7px;height:7px;border-radius:2px;background:currentColor;box-shadow:0 0 10px currentColor;transform:rotate(45deg);flex:none}
+.cont p{margin:0 0 12px;color:#d3d9f2}
 .cont ul{margin:0 0 14px;padding:0;list-style:none}
-.cont li{position:relative;padding:9px 12px 9px 40px;margin:6px 0;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
-.cont li::before{content:"";position:absolute;left:14px;top:17px;width:10px;height:10px;border-radius:50%;border:2px solid var(--c)}
-.cont li.chk{cursor:pointer}
-.cont li.chk.on{opacity:.55;text-decoration:line-through}
-.cont li.chk.on::before{background:var(--c)}
-.cont li .n{position:absolute;left:10px;top:8px;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700;background:var(--c);color:#06101c}
+.cont li{position:relative;padding:9px 12px 9px 40px;margin:6px 0;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06)}
+.cont li::before{content:"";position:absolute;left:14px;top:17px;width:10px;height:10px;border-radius:50%;border:2px solid var(--c,var(--cy))}
+.cont li.chk{cursor:pointer}.cont li.chk.on{opacity:.55;text-decoration:line-through}.cont li.chk.on::before{background:var(--c,var(--cy))}
 .cont li.num::before{display:none}
+.cont li .n{position:absolute;left:10px;top:8px;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700;background:var(--c,var(--cy));color:#05060f}
 .cont figure{margin:16px 0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff}
 .cont figure img{display:block;width:100%;height:auto}
-.lam{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh);cursor:zoom-in;background:#fff}
+.lam{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff;cursor:zoom-in}
 .lam img{display:block;width:100%;height:auto}
-.hint{display:flex;align-items:center;gap:8px;margin:10px 2px 0;font-size:13px;color:var(--muted)}
-details.tx{margin-top:14px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
-details.tx summary{padding:12px 16px;cursor:pointer;font-weight:600;font-size:14px}
-details.tx div{padding:0 16px 14px;color:#cdd5ee;font-size:14.5px}
-.nav{position:fixed;left:0;right:0;bottom:0;z-index:25;display:flex;gap:10px;align-items:center;padding:10px 16px;padding-bottom:max(10px,env(safe-area-inset-bottom));background:rgba(7,11,22,.86);backdrop-filter:blur(18px);border-top:1px solid var(--line)}
-.nav .pr{position:absolute;left:0;top:-1px;height:2px;background:var(--c);box-shadow:0 0 12px var(--c);transition:width .3s}
-.nav .btn{flex:1;padding:12px 10px;min-width:0}
-.nav .btn span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.nav .ib{width:48px;height:48px}
-.ib.on{background:color-mix(in srgb,#ff6b9a 25%,transparent);border-color:#ff6b9a;color:#ff6b9a}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:16px;background:var(--glass);border:1px solid var(--line);min-width:0}
+.item .th{width:54px;height:54px;border-radius:12px;flex:none;object-fit:cover;background:#151a33}
+.item div{min-width:0;flex:1}
+.item b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:600;font-size:14.5px;line-height:1.3}
+.item small{color:var(--muted);font-size:11.5px}
+.gtitle{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--c,var(--cy));margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.gtitle::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.lhead{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;padding:16px;border-radius:24px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 20%,transparent),rgba(255,255,255,.02));border:1px solid color-mix(in srgb,var(--c) 35%,transparent)}
+.lhead img{width:96px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:14px}
+.lhead h1{font-size:clamp(22px,5vw,32px);margin:6px 0}
+.lhead p{margin:0;color:var(--muted);font-size:13.5px}
+.lockrow{position:relative;border-radius:16px;overflow:hidden}
+.lockrow .items{filter:blur(4px);opacity:.5;pointer-events:none;user-select:none}
+.lockrow .cta{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:10px;text-align:center;padding:16px}
 
-/* panel lateral / buscador */
-.ov{position:fixed;inset:0;z-index:40;background:rgba(3,6,14,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.25s}
-.ov.on{opacity:1;pointer-events:auto}
-.dr{position:fixed;top:0;bottom:0;right:0;z-index:41;width:min(400px,92vw);background:var(--bg2);border-left:1px solid var(--line);transform:translateX(100%);transition:.3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
-.dr.on{transform:none}
-.dr header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
-.dr header b{flex:1;font-family:"Space Grotesk";font-size:17px}
-.dr .lst{overflow:auto;padding:8px 10px 30px}
-.dr .lst h4{margin:16px 8px 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
-.dr .lst a{display:block;padding:9px 12px;border-radius:10px;font-size:14.5px;color:#cfd6ee}
-.dr .lst a:hover{background:var(--card)}
-.dr .lst a.cur{background:color-mix(in srgb,var(--c) 18%,transparent);color:#fff;font-weight:600}
-.busca{position:fixed;left:50%;top:max(16px,env(safe-area-inset-top));z-index:41;width:min(640px,calc(100vw - 32px));transform:translate(-50%,-20px);opacity:0;pointer-events:none;transition:.25s;background:var(--bg2);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh);overflow:hidden}
-.busca.on{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
-.busca label{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
-.busca input{flex:1;background:none;border:0;outline:0;color:var(--txt);font:inherit;font-size:17px;min-width:0}
-.busca .res{max-height:min(60vh,520px);overflow:auto;padding:8px}
-.busca .res a{display:flex;gap:12px;align-items:center;padding:10px;border-radius:12px}
-.busca .res a:hover,.busca .res a.sel{background:var(--card2)}
-.busca .res img{width:46px;height:46px;border-radius:10px;object-fit:cover;flex:none}
-.busca .res b{display:block;font-size:14.5px;line-height:1.3}
-.busca .res small{color:var(--muted);font-size:12.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.busca .vacio{padding:22px;text-align:center;color:var(--muted);font-size:14px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px}
-.chips button{padding:7px 12px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:13.5px}
-mark{background:rgba(46,230,166,.28);color:#fff;border-radius:4px;padding:0 2px}
+/* herramientas UI */
+.tool{padding:18px;border-radius:24px;background:rgba(10,13,28,.8);border:1px solid var(--line)}
+.tool h2{font-size:22px}
+.tool .sub{color:var(--muted);font-size:13.5px;margin:4px 0 14px}
+.fld{margin:14px 0}
+.fld label{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14px;margin-bottom:8px}
+.fld output{font:700 17px "JetBrains Mono";color:var(--cy)}
+input[type=range]{width:100%;accent-color:#3ef2ff;height:28px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg button{padding:11px;border-radius:13px;background:var(--glass);border:1px solid var(--line);text-align:left;font-size:13.5px;line-height:1.3}
+.seg button small{display:block;color:var(--muted);font-size:11.5px}
+.seg button.on{background:rgba(62,242,255,.12);border-color:var(--cy)}
+.out3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.out3 div{padding:14px 6px;border-radius:16px;text-align:center;background:#05070f;border:1px solid var(--line)}
+.out3 div:nth-child(2){border-color:var(--cy);box-shadow:0 0 30px -8px var(--cy)}
+.out3 b{display:block;font:700 24px/1.1 "Space Grotesk"}
+.out3 span{font-size:11px;color:var(--muted)}
+.nota{font-size:12px;color:var(--muted);margin-top:12px}
+.scan-in{display:flex;gap:8px;align-items:center;padding:4px 4px 4px 14px;border-radius:16px;background:#05070f;border:1px solid var(--line)}
+.scan-in input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--txt);font:inherit;font-size:16px;padding:10px 0}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.chips button{padding:7px 12px;border-radius:99px;background:var(--glass);border:1px solid var(--line);font-size:13px}
+.verd{margin-top:14px;padding:16px;border-radius:18px;border:1px solid var(--line);background:#05070f;display:flex;gap:14px;align-items:flex-start}
+.verd .big{font-size:34px;line-height:1}
+.verd b{font:700 18px "Space Grotesk";display:block}
+.verd.si{border-color:rgba(61,255,176,.5);box-shadow:0 0 30px -10px var(--gr)}
+.verd.mod{border-color:rgba(255,200,87,.5);box-shadow:0 0 30px -10px var(--am)}
+.verd.no{border-color:rgba(255,79,120,.6);box-shadow:0 0 30px -10px #ff4f78}
+.plan{display:grid;gap:8px;margin-top:14px}
+.dia{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:center;padding:10px;border-radius:14px;background:#05070f;border:1px solid var(--line)}
+.dia b{font:700 13px "JetBrains Mono";color:var(--cy)}
+.mix{height:22px;border-radius:8px;overflow:hidden;display:flex;font-size:10.5px;font-weight:700}
+.mix i{display:grid;place-items:center;font-style:normal;color:#05060f}
+.mix .n{background:var(--gr)}.mix .v{background:#5b6488;color:#fff}
 
-/* zoom */
-.zoom{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.92);display:none;overflow:auto;touch-action:pan-x pan-y pinch-zoom}
+/* barra inferior */
+.tab{position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:40;display:grid;grid-template-columns:repeat(5,1fr);padding:6px;border-radius:22px;background:rgba(10,13,28,.82);backdrop-filter:blur(20px) saturate(150%);border:1px solid var(--line);box-shadow:var(--sh);max-width:560px;margin:0 auto}
+.tab a,.tab button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px;border-radius:16px;font-size:10.5px;color:var(--muted)}
+.tab svg{width:21px;height:21px}
+.tab .on{color:#fff;background:rgba(62,242,255,.1)}
+.tab .on svg{color:var(--cy);filter:drop-shadow(0 0 6px var(--cy))}
+.tab .key{color:var(--am)}
+.zoom{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.94);display:none;overflow:auto}
 .zoom.on{display:block}
 .zoom img{display:block;width:min(1000px,100%);margin:0 auto;padding:60px 0 30px}
 .zoom .ib{position:fixed;top:max(14px,env(safe-area-inset-top));right:14px}
-
-/* calculadora */
-.calc{padding:22px;border-radius:24px;background:linear-gradient(160deg,rgba(77,212,255,.16),rgba(122,92,255,.10));border:1px solid rgba(77,212,255,.35);margin-bottom:18px}
-.calc h2{font-size:22px;margin-bottom:4px}
-.calc .sub{color:var(--muted);font-size:14px;margin:0 0 18px}
-.fld{margin:14px 0}
-.fld label{display:flex;justify-content:space-between;font-weight:600;font-size:14.5px;margin-bottom:8px}
-.fld label output{font:700 18px "Space Grotesk";color:#4dd4ff}
-input[type=range]{width:100%;accent-color:#4dd4ff;height:28px}
-.seg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.seg button{padding:11px 10px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:14px;text-align:left;line-height:1.3}
-.seg button small{display:block;color:var(--muted);font-size:12px}
-.seg button.on{background:rgba(77,212,255,.18);border-color:#4dd4ff}
-.res3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-.res3 div{padding:14px 8px;border-radius:16px;text-align:center;background:rgba(7,11,22,.55);border:1px solid var(--line)}
-.res3 b{display:block;font:700 26px/1.1 "Space Grotesk";color:#fff}
-.res3 span{font-size:12px;color:var(--muted)}
-.res3 div:nth-child(2){border-color:#4dd4ff;box-shadow:0 0 30px -8px #4dd4ff}
-.aviso{font-size:12.5px;color:var(--muted);margin:14px 0 0}
-.fade{animation:entra .35s ease both}
-@keyframes entra{from{opacity:0;transform:translateY(10px)}}
-@media (max-width:560px){
-  main{padding:14px 16px 120px}
-  .lhead{grid-template-columns:84px 1fr;padding:14px;gap:14px}
-  .lhead img{width:84px}
-  .lhead p{display:none}
-  .cont{padding:16px;border-radius:20px}
-  .stats b{font-size:22px}
-  .seg{grid-template-columns:1fr}
-  .libros{grid-template-columns:1fr 1fr;gap:12px}
-  .libro .bd{padding:10px 12px 12px}
-  .libro h3{font-size:15px}
-  .libro p{display:none}
-  .libro .em{width:34px;height:34px;font-size:18px}
+.toast{position:fixed;left:50%;top:max(70px,calc(env(safe-area-inset-top) + 60px));z-index:90;transform:translate(-50%,-20px);opacity:0;transition:.3s;padding:12px 18px;border-radius:16px;background:#0d1124;border:1px solid rgba(61,255,176,.5);box-shadow:0 0 40px -10px var(--gr);font-weight:600;font-size:14px;pointer-events:none;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.fade{animation:entra .45s ease both}
+@keyframes entra{from{opacity:0;transform:translateY(12px)}}
+@media (min-width:860px){
+  .hgrid{grid-template-columns:1fr 1.1fr;gap:26px}
+  .hero{padding:26px}
 }
+@media (max-width:420px){.libs{grid-template-columns:1fr 1fr}.chip-acc span{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="orbs"><i></i><i></i><i></i></div>
-<div class="grid-bg"></div>
+<canvas id="fx"></canvas><div class="aurora"></div><div class="gridbg"></div><div class="scan"></div>
 <div id="app">
   <header class="top">
-    <a class="logo" href="#/"><b>🐾</b><span>Biblioteca Natural para Gatos</span></a>
+    <a class="brand" href="#/"><span class="mini-orb"></span><span><b>Club Gatito Feliz</b><small class="mono"><i></i>MICHI·IA en línea</small></span></a>
     <div class="sp"></div>
-    <button class="ib" id="bBuscar" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
-    <button class="ib" id="bMenu" aria-label="Menú" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    <button class="chip-acc mono" id="chipAcc">🔒 <span>Acceso parcial</span></button>
   </header>
   <main id="vista"></main>
+  <nav class="tab" id="tab">
+    <a href="#/" data-r="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Inicio</a>
+    <a href="#/clases" data-r="clases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></svg>Clases</a>
+    <a href="#/biblioteca" data-r="biblioteca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h13"/></svg>Recetas</a>
+    <a href="#/ia" data-r="ia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg>IA Tools</a>
+    <button id="tabKey" class="key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9m-3 3 3 3m-6 0 2 2"/></svg><span id="tabKeyT">Mi clave</span></button>
+  </nav>
 </div>
-<div class="ov" id="ov"></div>
-<aside class="dr" id="dr"><header><b id="drT">Contenido</b><button class="ib" id="drX" aria-label="Cerrar">✕</button></header><div class="lst" id="drL"></div></aside>
-<div class="busca" id="busca">
-  <label><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Busca una receta o ingrediente…" autocomplete="off"><button class="ib" id="qX" aria-label="Cerrar" style="width:34px;height:34px">✕</button></label>
-  <div class="res" id="qR"></div>
-</div>
-<div class="zoom" id="zoom"><button class="ib" id="zX" aria-label="Cerrar">✕</button><img id="zI" alt=""></div>
-<script src="data.js"></script>
+
+<div class="ov" id="ovVid"><div class="sheet"><div class="sh-h"><h3 id="vT"></h3><button class="ib" data-close>✕</button></div><div class="vid" id="vBox"></div>
+  <div class="vctl" id="vCtl">
+    <button id="cPlay" aria-label="Reproducir"></button>
+    <input type="range" id="cSeek" min="0" max="1000" value="0" aria-label="Avance">
+    <span class="tm" id="cTime">0:00 / 0:00</span>
+    <button id="cMute" aria-label="Sonido"></button>
+    <button id="cFs" aria-label="Pantalla completa"><svg viewBox="0 0 24 24"><path d="M4 9V4h5v2H6v3zm11-5h5v5h-2V6h-3zM4 15h2v3h3v2H4zm14 3v-3h2v5h-5v-2z"/></svg></button>
+  </div><div class="vmeta"><p id="vD"></p><button class="btn ghost" id="vDone" style="padding:10px 14px;font-size:13px">✓ Vista</button></div></div></div>
+
+<div class="ov" id="ovKey"><div class="sheet">
+  <div class="sh-h"><h3>🔐 Desbloquear acceso total</h3><button class="ib" data-close>✕</button></div>
+  <div id="keyBody"></div>
+</div></div>
+
+<div class="zoom" id="zoom"><button class="ib" id="zX">✕</button><img id="zI" alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script src="club.js"></script>
+<script src="secure.js"></script>
 <script>
-const L = window.LIBROS, $ = s => document.querySelector(s);
-const RECETAS = {guia:50, sobres:50, premios:19, renales:3};
+const C = window.CLUB, $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const st = {
-  get(k, d){ try { const v = localStorage.getItem("bng_"+k); return v ? JSON.parse(v) : d } catch(e){ return d } },
-  set(k, v){ try { localStorage.setItem("bng_"+k, JSON.stringify(v)) } catch(e){} }
-};
-let vistos = st.get("vistos", {}), favs = st.get("favs", []), ultimo = st.get("ultimo", null);
-const libro = id => L.find(b => b.id === id);
-const miniatura = s => s.capa ? s.img : (((s.conteudo || []).find(c => c.t === "img") || {}).src || s.thumb);
-const textoDe = s => s.capa ? (s.texto || []).join(" ") : (s.conteudo || []).filter(c => c.x).map(c => c.x).join(" ");
-const prog = b => b.secoes.filter((_, i) => vistos[b.id + "/" + i]).length / b.secoes.length;
+const st = { get(k, d){ try { const v = localStorage.getItem("cgf_" + k); return v ? JSON.parse(v) : d } catch(e){ return d } },
+             set(k, v){ try { localStorage.setItem("cgf_" + k, JSON.stringify(v)) } catch(e){} } };
+let VAULT = null;                       // contenido descifrado
+let vistos = st.get("vistos", {});
+const PLAY = '<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>';
+const LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>';
+const MODS = [
+  {id:"inicio", n:"MÓDULO 01", t:"Empieza aquí", d:"La base de todo: por qué la comida de verdad cambia la vida de tu gato."},
+  {id:"tom", n:"MÓDULO 02", t:"La historia de Tom", d:"Un rescate real que explica por qué existe este proyecto."},
+  {id:"recetas", n:"MÓDULO 03", t:"Recetas en video", d:"Paso a paso, con ingredientes sencillos del súper."},
+  {id:"nutricion", n:"MÓDULO 04", t:"Nutrición felina", d:"Lo que tu gato de verdad necesita comer, explicado fácil."},
+];
+const TOOLS = [
+  {id:"escaner", ic:"🔍", t:"Escáner de alimentos", d:"Escribe un alimento y la IA te dice si tu gato puede comerlo.", free:true},
+  {id:"porciones", ic:"🧮", t:"Calculadora de porciones", d:"Gramos exactos al día según peso y perfil de tu gato.", free:false},
+  {id:"agua", ic:"💧", t:"Monitor de hidratación", d:"Cuánta agua necesita tu gato y cómo lograr que la tome.", free:false},
+  {id:"transicion", ic:"📅", t:"Plan de transición 7 días", d:"Pasa de croquetas a comida natural sin malestares.", free:false},
+];
+const TIERS = [{v:100, e:"🌸", l:"Aportación básica"}, {v:200, e:"💖", l:"Me gustó el material", pop:"LA MÁS ELEGIDA"}, {v:300, e:"✨", l:"Apoyo especial"}, {v:500, e:"👑", l:"Apoyo extraordinario"}];
+let aporte = st.get("aporte", 200);
+const unlocked = () => !!VAULT;
+const vid = k => C.videos.find(v => v.k === k);
+const canSee = v => v.free || unlocked();
+const totalItems = C.videos.length + C.libros.length + TOOLS.length;
+const freeItems = C.videos.filter(v => v.free).length + TOOLS.filter(t => t.free).length + 1; // +1 vista previa guía
+const pct = () => unlocked() ? 100 : Math.round(freeItems / totalItems * 100);
 
-function setCor(c){ document.documentElement.style.setProperty("--c", c || "#2ee6a6") }
+function toast(t){ const el = $("#toast"); el.textContent = t; el.classList.add("on"); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove("on"), 2600) }
+function marcaAcceso(){
+  const ok = unlocked();
+  $("#chipAcc").className = "chip-acc mono" + (ok ? " ok" : "");
+  $("#chipAcc").innerHTML = ok ? "✦ <span>Acceso total</span>" : "🔒 <span>Acceso parcial</span>";
+  $("#tabKeyT").textContent = ok ? "Activo" : "Mi clave";
+}
 
-/* ---------- INICIO ---------- */
-function inicio(){
-  setCor("#2ee6a6"); $("#bMenu").hidden = true;
-  const tot = Object.values(RECETAS).reduce((a, b) => a + b, 0);
-  const u = ultimo && libro(ultimo.l) && libro(ultimo.l).secoes[ultimo.s] ? ultimo : null;
-  const f = favs.map(k => { const [l, s] = k.split("/"); const b = libro(l); return b && b.secoes[s] ? {k, b, s: b.secoes[s]} : null }).filter(Boolean);
-  $("#vista").innerHTML = `
-  <section class="hero fade">
-    <span class="pill"><i></i> 100% en línea · No ocupa espacio en tu celular</span>
-    <h1>Todo para alimentar y cuidar <em>a tu gato</em>, en un solo lugar</h1>
-    <p>Recetas naturales, sobrecitos, premios y guías de salud. Ábrelo cuando quieras desde el navegador: no tienes que descargar nada.</p>
-    <div class="stats">
-      <div class="stat"><b>${L.length}</b><span>materiales</span></div>
-      <div class="stat"><b>${tot}+</b><span>recetas</span></div>
-      <div class="stat"><b>0 MB</b><span>en tu celular</span></div>
+/* ---------- descifrado (AES-GCM + PBKDF2) ---------- */
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const normaliza = s => s.trim().toUpperCase().replace(/\s+/g, "");
+async function abrir(clave){
+  const S = window.SECURE, enc = new TextEncoder();
+  const base = await crypto.subtle.importKey("raw", enc.encode(normaliza(clave)), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name:"PBKDF2", salt:b64(S.salt), iterations:S.it, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(S.iv)}, key, b64(S.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+/* ---------- tarjetas ---------- */
+function cardVideo(v, i){
+  const ok = canSee(v), seen = vistos[v.k];
+  return `<div class="vc ${ok ? "" : "locked"} fade" style="animation-delay:${i * 60}ms" data-v="${v.k}">
+    <div class="th"><img src="${v.img}" alt="" loading="lazy">
+      ${ok ? `<span class="playbtn">${PLAY}</span><span class="badge ${v.free ? "free" : ""}">${v.free ? "● Libre" : "✦ Premium"}</span>`
+           : `<div class="lk"><span class="lockico">${LOCK}</span><span class="mono">CLAVE REQUERIDA</span></div><span class="badge lock">🔒 Bloqueado</span>`}
     </div>
-    ${u ? `<a class="seguir" href="#/${u.l}/${u.s}"><img src="${miniatura(libro(u.l).secoes[u.s]) || libro(u.l).capa}" alt=""><div><small>Continúa donde te quedaste</small><strong>${esc(libro(u.l).secoes[u.s].titulo)}</strong></div><span class="btn" style="--c:#7aa2ff;padding:10px 14px">Seguir →</span></a>` : ""}
-  </section>
-  ${f.length ? `<div class="sec-t"><h2>❤️ Mis favoritas</h2><span>${f.length}</span></div><div class="fav-list">${f.map(x => `<a href="#/${x.k}"><img src="${miniatura(x.s) || x.b.capa}" alt=""><span>${esc(x.s.titulo)}</span></a>`).join("")}</div>` : ""}
-  <div class="sec-t"><h2>Tus materiales</h2><span>Toca para abrir</span></div>
-  <div class="libros">${L.map((b, i) => `
-    <a class="libro fade" href="#/${b.id}" style="--c:${b.cor};animation-delay:${i * 50}ms">
-      <div class="cv"><img src="${b.capa}" alt="${esc(b.titulo)}" loading="lazy"><span class="em">${b.emoji}</span></div>
-      <div class="bd"><h3>${esc(b.titulo)}</h3><p>${esc(b.desc)}</p>
-      <div class="meta">${RECETAS[b.id] ? `<span class="tag">${RECETAS[b.id]} recetas</span>` : `<span class="tag">${b.id === "calc" ? "Herramienta" : "Guía"}</span>`}<div class="bar"><i style="width:${Math.round(prog(b) * 100)}%"></i></div></div></div>
-    </a>`).join("")}</div>
-  <div class="nota">💡 <b>Consejo:</b> guarda esta página en tu pantalla de inicio (menú del navegador → “Agregar a pantalla de inicio”) para abrirla como una app.</div>`;
+    <div class="bd"><h4>${esc(v.t)}</h4><p>${esc(v.d)}</p>
+      <div class="prog"><span>Progreso</span><span class="bar"><i style="width:${seen ? 100 : 0}%"></i></span><span>${seen ? "100%" : "0%"}</span></div></div>
+  </div>`;
+}
+function cardLibro(b, i){
+  const ok = unlocked();
+  const cnt = b.recetas ? `${b.recetas} recetas` : `${b.secoes} secciones`;
+  return `<a class="lb ${ok ? "" : "locked"} fade" href="#/libro/${b.id}" style="--c:${b.cor};animation-delay:${i * 50}ms">
+    <div class="cv"><img src="${b.capa}" alt="" loading="lazy"><span class="em">${b.emoji}</span>${ok ? "" : `<span class="badge lock lockmini">${b.preview ? "👁 Vista previa" : "🔒"}</span>`}</div>
+    <div class="bd"><h4>${esc(b.titulo)}</h4><small>${cnt} · ${b.paginas} pág.</small></div></a>`;
+}
+function cardTool(t){
+  const ok = t.free || unlocked();
+  return `<a class="tl fade" href="#/ia/${t.id}"><span class="ic">${t.ic}</span><span><b>${t.t}</b><small>${t.d}</small></span>
+    <span class="badge ${ok ? "free" : "lock"}">${ok ? (t.free ? "● Libre" : "✦ Activo") : "🔒"}</span></a>`;
+}
+function bloqueAport(){
+  if (unlocked()) return "";
+  return `<section class="aport fade">
+    <span class="mod-n mono">ACCESO TOTAL</span>
+    <h2>Elige tu aportación y desbloquea todo</h2>
+    <p style="color:var(--muted);font-size:13.5px;margin:8px 0 0">Aportación única desde <b style="color:#fff">$100 MXN</b> · acceso de por vida. Sin importar el monto que elijas, recibes exactamente el mismo acceso completo 💛</p>
+    <div class="tiers">${TIERS.map(t => `<button class="tier ${t.v === aporte ? "on" : ""}" data-tier="${t.v}">${t.pop ? `<span class="pop mono">${t.pop}</span>` : ""}<span class="e">${t.e}</span><b>$${t.v} MXN</b><small>${t.l}</small></button>`).join("")}</div>
+    <div class="tusel">Tu aportación: <b class="gt tuap">$${aporte} MXN</b></div>
+    <ul>
+      <li><i>🎬</i> Las 16 clases en video: todas las recetas y la nutrición felina completa</li>
+      <li><i>📚</i> 7 materiales: más de 120 recetas, sobrecitos y premios caseros</li>
+      <li><i>🧠</i> Herramientas IA: porciones, hidratación y plan de transición</li>
+      <li><i>💛</i> Parte de tu aportación ayuda a gatitos rescatados</li>
+    </ul>
+    <div class="steps">
+      <div class="step"><b>1</b><span>Haz tu aportación de <b style="all:unset;font-weight:700" class="tuap">$${aporte} MXN</b> por <b style="all:unset;font-weight:700">SPEI u OXXO</b>. La CLABE te llega por WhatsApp.</span></div>
+      <div class="step"><b>2</b><span>Envía la foto de tu comprobante por WhatsApp.</span></div>
+      <div class="step"><b>3</b><span>Recibes tu <b style="all:unset;font-weight:700">clave de acceso</b> y desbloqueas todo al instante.</span></div>
+    </div>
+    <button class="btn full" data-key>🔑 Ya tengo mi clave</button>
+  </section>`;
 }
 
-/* ---------- LIBRO ---------- */
-function verLibro(b){
-  setCor(b.cor); $("#bMenu").hidden = false;
-  let primero = b.secoes.findIndex((_, i) => !vistos[b.id + "/" + i]); if (primero < 0) primero = 0;
+/* ---------- vistas ---------- */
+function setTab(r){ $$("#tab a").forEach(a => a.classList.toggle("on", a.dataset.r === r)) }
+
+function inicio(){
+  setTab("inicio");
+  const v1 = vid("v1"), p = pct();
+  const libres = C.videos.filter(v => v.free).length, bloq = C.videos.length - libres;
   $("#vista").innerHTML = `
-  <div class="lhead fade"><img src="${b.capa}" alt=""><div><span class="tag">${b.emoji} ${RECETAS[b.id] ? RECETAS[b.id] + " recetas" : b.secoes.length + " secciones"}</span><h1>${esc(b.titulo)}</h1><p>${esc(b.desc)}</p>
-  <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#/${b.id}/${primero}">${primero ? "Continuar" : "Empezar"} →</a>${b.id === "calc" ? `<a class="btn ghost" href="#/calc/herramienta">🧮 Calcular ahora</a>` : ""}</div></div></div>
-  ${b.id === "calc" ? calculadoraHTML() : ""}
-  ${b.grupos.map(g => `<div class="grupo fade"><h3>${esc(g.nome)}</h3><div class="items">${g.secoes.map(i => { const s = b.secoes[i], m = miniatura(s);
-    return `<a class="item" href="#/${b.id}/${i}">${m ? `<img class="th" src="${m}" alt="" loading="lazy">` : `<span class="th ph">${b.emoji}</span>`}<div><b>${esc(s.titulo)}</b><small>${s.capa ? "Lámina ilustrada" : "Lectura"}</small></div>${vistos[b.id + "/" + i] ? `<span class="ok">✓</span>` : ""}</a>` }).join("")}</div></div>`).join("")}`;
-  if (b.id === "calc") ligarCalc();
+  <section class="hero fade"><div class="hgrid">
+    <div>
+      <div class="ai-row"><div class="orb"><span class="r3"></span><span class="r2"></span><span class="r1"></span><span class="core"></span></div>
+        <div><div class="ai-tag mono">MICHI·IA · ASISTENTE DEL CLUB</div><div class="typing" id="typing"></div></div></div>
+      <h1>Bienvenida al <span class="gt">Club Gatito Feliz</span></h1>
+      <p class="lead">Clases en video, recetas naturales y herramientas inteligentes para que tu michi viva más y mejor. Todo en línea: no ocupa espacio en tu celular.</p>
+    </div>
+    <div class="feat" data-v="v1"><img src="${v1.img}" alt=""><div class="play"><span class="playbtn">${PLAY}</span></div>
+      <div class="lbl"><b>${esc(v1.t)}</b><span class="badge free">● Clase 1</span></div></div>
+  </div>
+  <div class="acc"><div class="ring" style="--p:${p}"><b>${p}%</b></div>
+    <div><h3>${unlocked() ? "✦ Acceso total activo" : "Tu acceso está parcial"}</h3>
+    <p>${unlocked() ? "Tienes todas las clases, los 7 materiales y las herramientas IA desbloqueadas. ¡Disfrútalo!" : `Tienes ${libres} clases libres. ${bloq} clases, 7 materiales y 3 herramientas IA se liberan con tu clave.`}</p></div>
+    ${unlocked() ? `<a class="btn ghost" href="#/biblioteca">📚 Ir a las recetas</a>` : `<button class="btn" data-key>🔓 Desbloquear todo · desde $100</button>`}
+  </div></section>
+  ${MODS.map(m => modulo(m)).join("")}
+  <section class="mod"><div class="mod-h"><div><span class="mod-n mono">MÓDULO 05</span><h2>Biblioteca premium</h2><p>7 materiales con recetas paso a paso.</p></div><a class="cnt" href="#/biblioteca">Ver todo →</a></div>
+    <div class="libs">${C.libros.map(cardLibro).join("")}</div></section>
+  <section class="mod"><div class="mod-h"><div><span class="mod-n mono">MÓDULO 06</span><h2>Herramientas IA</h2><p>Cálculos y respuestas al instante para tu gato.</p></div></div>
+    <div class="tools">${TOOLS.map(cardTool).join("")}</div></section>
+  ${bloqueAport()}`;
+  escribir();
+}
+function modulo(m){
+  const vs = C.videos.filter(v => v.mod === m.id);
+  return `<section class="mod" id="m-${m.id}"><div class="mod-h"><div><span class="mod-n mono">${m.n}</span><h2>${m.t}</h2><p>${m.d}</p></div><span class="cnt mono">${vs.filter(canSee).length}/${vs.length}</span></div>
+    <div class="rail">${vs.map(cardVideo).join("")}</div></section>`;
+}
+function clases(){
+  setTab("clases");
+  $("#vista").innerHTML = `<div class="mod-h fade" style="margin-top:6px"><div><span class="mod-n mono">CLASES EN VIDEO</span><h2>Todas tus clases</h2><p>Toca una clase para verla aquí mismo.</p></div></div>
+    ${MODS.map(modulo).join("")}${bloqueAport()}`;
+}
+function biblioteca(){
+  setTab("biblioteca");
+  $("#vista").innerHTML = `<div class="mod-h fade" style="margin-top:6px"><div><span class="mod-n mono">BIBLIOTECA</span><h2>Recetas y guías</h2><p>${unlocked() ? "Toca un material para leerlo." : "La Guía tiene vista previa libre. El resto se desbloquea con tu clave."}</p></div></div>
+    <div class="libs">${C.libros.map(cardLibro).join("")}</div>${bloqueAport()}`;
+}
+function iaHub(){
+  setTab("ia");
+  $("#vista").innerHTML = `<div class="mod-h fade" style="margin-top:6px"><div><span class="mod-n mono">MICHI·IA</span><h2>Herramientas inteligentes</h2><p>Respuestas al instante para el día a día de tu gato.</p></div></div>
+    <div class="tools">${TOOLS.map(cardTool).join("")}</div>${bloqueAport()}`;
 }
 
-/* ---------- LECTOR ---------- */
-function bloque(c, b, k){
+/* ---------- libro ---------- */
+const fullLibro = id => VAULT && VAULT.libros.find(b => b.id === id);
+function verLibro(id){
+  setTab("biblioteca");
+  const meta = C.libros.find(b => b.id === id); if (!meta) return inicio();
+  const b = fullLibro(id);
+  const thumb = s => s.capa ? s.img : (((s.conteudo || []).find(c => c.t === "img") || {}).src || s.thumb);
+  let html = `<div class="lhead fade" style="--c:${meta.cor}"><img src="${meta.capa}" alt=""><div><span class="badge ${b ? "free" : "lock"}">${b ? "✦ Desbloqueado" : (meta.preview ? "👁 Vista previa" : "🔒 Bloqueado")}</span><h1>${esc(meta.titulo)}</h1><p>${esc(meta.desc)}</p></div></div>`;
+  if (b) {
+    html += b.grupos.map(g => `<div class="gtitle mono" style="--c:${meta.cor}">${esc(g.nome)}</div><div class="items">${g.secoes.map(i => { const s = b.secoes[i], m = thumb(s);
+      return `<a class="item" href="#/libro/${id}/${i}">${m ? `<img class="th" src="${m}" alt="" loading="lazy">` : `<span class="th"></span>`}<div><b>${esc(s.titulo)}</b><small>${vistos[id + "/" + i] ? "✓ Leído" : (s.capa ? "Lámina ilustrada" : "Lectura")}</small></div></a>` }).join("")}</div>`).join("");
+  } else {
+    if (meta.preview) html += `<div class="gtitle mono" style="--c:${meta.cor}">${esc(meta.preview.grupo)} · libre</div><div class="items">${meta.preview.secoes.map(s => { const m = thumb(s);
+      return `<a class="item" href="#/libro/${id}/${s.i}">${m ? `<img class="th" src="${m}" alt="" loading="lazy">` : `<span class="th"></span>`}<div><b>${esc(s.titulo)}</b><small>Vista previa</small></div></a>` }).join("")}</div>`;
+    const resto = meta.grupos.slice(meta.preview ? 1 : 0);
+    html += `<div class="gtitle mono" style="--c:${meta.cor}">Contenido bloqueado</div><div class="lockrow"><div class="items">${resto.map(g => `<div class="item"><span class="th"></span><div><b>${esc(g.nome)}</b><small>${g.n} secciones</small></div></div>`).join("")}</div>
+      <div class="cta"><span class="lockico">${LOCK}</span><b>${resto.reduce((a, g) => a + g.n, 0)} secciones protegidas</b><button class="btn" data-key>🔓 Desbloquear con mi clave</button></div></div>`;
+  }
+  $("#vista").innerHTML = html; window.scrollTo({top:0});
+}
+function bloque(c, k){
   if (c.t === "img") return `<figure><img src="${c.src}" width="${c.w}" height="${c.h}" alt="" loading="lazy"></figure>`;
   if (c.t === "h2") return `<h2>${esc(c.x)}</h2>`;
   if (c.t === "h3") return `<h3>${esc(c.x)}</h3>`;
-  if (c.t === "li") {
-    const m = c.x.match(/^(\d{1,2})[.)]\s+(.*)$/);
-    if (m) return `<li class="num"><span class="n">${m[1]}</span>${esc(m[2])}</li>`;
-    return `<li class="chk" data-k="${k}">${esc(c.x)}</li>`;
-  }
+  if (c.t === "li") { const m = c.x.match(/^(\d{1,2})[.)]\s+(.*)$/);
+    return m ? `<li class="num"><span class="n">${m[1]}</span>${esc(m[2])}</li>` : `<li class="chk" data-k="${k}">${esc(c.x)}</li>` }
   return `<p>${esc(c.x)}</p>`;
 }
-function verSeccion(b, i){
-  const s = b.secoes[i]; if (!s) return verLibro(b);
-  setCor(b.cor); $("#bMenu").hidden = false;
-  vistos[b.id + "/" + i] = 1; st.set("vistos", vistos);
-  ultimo = {l: b.id, s: i}; st.set("ultimo", ultimo);
-  const g = b.grupos.find(g => g.secoes.includes(i));
-  const marc = st.get("chk", {});
-  let html = "";
-  if (s.capa) {
-    html = `<div class="lam" data-z="${s.img}"><img src="${s.img}" width="${s.w}" height="${s.h}" alt="${esc(s.titulo)}"></div>
-      <div class="hint">🔍 Toca la imagen para verla en grande</div>
-      ${s.texto && s.texto.length ? `<details class="tx"><summary>📝 Ver solo el texto</summary><div>${s.texto.map(esc).join("<br>")}</div></details>` : ""}`;
-  } else {
-    let out = [], ul = null;
-    const igual = (a, b) => norm(a).replace(/\W/g, "") === norm(b).replace(/\W/g, "");
-    s.conteudo.forEach((c, j) => {
-      if (j < 3 && c.x && (c.t === "h2" || c.t === "h3") && (igual(c.x, s.titulo) || norm(s.titulo).endsWith(norm(c.x)) && c.x.length > 12)) return;
-      const h = bloque(c, b, b.id + "/" + i + "/" + j);
-      if (c.t === "li") { if (!ul) { ul = []; out.push(ul) } ul.push(h) } else { ul = null; out.push(h) }
-    });
-    html = `<div class="cont">${out.map(x => Array.isArray(x) ? `<ul>${x.join("")}</ul>` : x).join("")}</div>`;
+function verSeccion(id, i){
+  setTab("biblioteca");
+  const meta = C.libros.find(b => b.id === id); if (!meta) return inicio();
+  const b = fullLibro(id);
+  let s = b ? b.secoes[i] : (meta.preview && (meta.preview.secoes.find(x => x.i === i)));
+  if (!s) { verLibro(id); abrirClave(); return }
+  vistos[id + "/" + i] = 1; st.set("vistos", vistos);
+  const lista = b ? b.secoes.map((_, j) => j) : meta.preview.secoes.map(x => x.i);
+  const pos = lista.indexOf(i), prev = lista[pos - 1], next = lista[pos + 1];
+  const igual = (a, z) => a.toLowerCase().replace(/\W/g, "") === z.toLowerCase().replace(/\W/g, "");
+  let body;
+  if (s.capa) body = `<div class="lam" data-z="${s.img}"><img src="${s.img}" width="${s.w}" height="${s.h}" alt=""></div><p class="nota">🔍 Toca la imagen para verla en grande</p>`;
+  else { let out = [], ul = null; const marc = st.get("chk", {});
+    s.conteudo.forEach((c, j) => { if (j < 3 && c.x && (c.t === "h2" || c.t === "h3") && igual(c.x, s.titulo)) return;
+      const h = bloque(c, id + "/" + i + "/" + j); if (c.t === "li") { if (!ul) { ul = []; out.push(ul) } ul.push(h) } else { ul = null; out.push(h) } });
+    body = `<div class="cont" style="--c:${meta.cor}">${out.map(x => Array.isArray(x) ? `<ul>${x.join("")}</ul>` : x).join("")}</div>`; }
+  $("#vista").innerHTML = `<article class="rd fade"><div class="crumb"><a href="#/libro/${id}">${meta.emoji} ${esc(meta.titulo)}</a><span>›</span><span>${pos + 1} / ${lista.length}${b ? "" : " (vista previa)"}</span></div>
+    <h1>${esc(s.titulo)}</h1>${body}
+    <div style="display:flex;gap:10px;margin-top:16px">${prev !== undefined ? `<a class="btn ghost" style="flex:1" href="#/libro/${id}/${prev}">← Anterior</a>` : ""}
+    ${next !== undefined ? `<a class="btn" style="flex:1" href="#/libro/${id}/${next}">Siguiente →</a>` : (b ? `<a class="btn" style="flex:1" href="#/libro/${id}">Volver al índice</a>` : `<button class="btn" style="flex:1" data-key>🔓 Seguir leyendo</button>`)}</div></article>`;
+  $$("li.chk").forEach(li => { const m = st.get("chk", {}); if (m[li.dataset.k]) li.classList.add("on");
+    li.onclick = () => { li.classList.toggle("on"); const n = st.get("chk", {}); li.classList.contains("on") ? n[li.dataset.k] = 1 : delete n[li.dataset.k]; st.set("chk", n) } });
+  $$(".lam,.cont figure img").forEach(el => el.onclick = () => zoom(el.dataset.z || el.src));
+  window.scrollTo({top:0});
+}
+
+/* ---------- herramientas ---------- */
+const ALIM = [
+  ["pollo", "si", "Sí, cocido y sin hueso", "Excelente proteína. Siempre cocido, sin piel, sin sal ni condimentos."],
+  ["pavo", "si", "Sí, cocido", "Proteína magra. Cocido, sin sal ni condimentos."],
+  ["pescado blanco", "si", "Sí, cocido y sin espinas", "Tilapia o merluza bien cocida y sin espinas."],
+  ["sardina", "si", "Sí, en agua y sin sal", "Rica en omega 3. Elige sardina en agua, nunca en aceite con sal o en salsa."],
+  ["huevo", "si", "Sí, siempre cocido", "Huevo cocido o revuelto sin aceite ni sal. Crudo, no."],
+  ["calabaza", "si", "Sí, cocida", "Ayuda a la digestión. Cocida y machacada, en poca cantidad."],
+  ["zanahoria", "si", "Sí, cocida", "Cocida y bien picada, como complemento."],
+  ["chayote", "si", "Sí, cocido", "Ligero y con mucha agua. Cocido y machacado."],
+  ["calabacita", "si", "Sí, cocida", "Cocida y machacada, como complemento."],
+  ["camote", "si", "Sí, cocido", "Cocido y machacado, en poca cantidad."],
+  ["arroz", "mod", "Con moderación", "Solo como complemento, bien cocido y en poca cantidad. El gato es carnívoro."],
+  ["avena", "mod", "Con moderación", "Cocida y en poca cantidad, como complemento."],
+  ["atun", "mod", "De vez en cuando", "Atún en agua y sin sal, solo ocasionalmente; no como base de la dieta."],
+  ["higado", "mod", "Con moderación", "Cocido y en porciones pequeñas: en exceso puede hacer daño."],
+  ["queso", "mod", "Muy poquito", "Solo queso fresco, una pizca como premio. Muchos gatos no toleran la lactosa."],
+  ["leche", "no", "Mejor evítala", "La mayoría de los gatos adultos no digieren la lactosa: puede causar diarrea."],
+  ["cebolla", "no", "¡NUNCA!", "Es tóxica para los gatos, cruda o cocida, incluso en polvo o en caldos."],
+  ["ajo", "no", "¡NUNCA!", "Es tóxico para los gatos, incluso en polvo o en sazonadores."],
+  ["chocolate", "no", "¡NUNCA!", "Contiene sustancias tóxicas para los gatos."],
+  ["cafe", "no", "¡NUNCA!", "La cafeína es peligrosa para los gatos."],
+  ["uva", "no", "¡NUNCA!", "Uvas y pasas pueden hacerle mucho daño."],
+  ["pasas", "no", "¡NUNCA!", "Uvas y pasas pueden hacerle mucho daño."],
+  ["aguacate", "no", "¡NUNCA!", "No es seguro para los gatos."],
+  ["hueso", "no", "¡NUNCA cocidos!", "Los huesos cocidos se astillan y pueden lastimarlo por dentro."],
+  ["sal", "no", "Evítala", "Nada de sal ni condimentos en su comida."],
+  ["alcohol", "no", "¡NUNCA!", "Es muy peligroso para los gatos, aunque sea poquito."],
+  ["croquetas", "mod", "Mejor combinadas", "Puedes ir mezclando comida natural poco a poco: usa el Plan de transición."],
+];
+const sinAcento = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+function toolLock(t){
+  return `<div class="tool fade"><div class="lockrow" style="padding:30px 10px;text-align:center"><div style="display:grid;place-items:center;gap:10px">
+    <span class="lockico">${LOCK}</span><h2>${t.ic} ${t.t}</h2><p class="sub">${t.d}</p><button class="btn" data-key>🔓 Desbloquear con mi clave</button></div></div></div>`;
+}
+function verTool(id){
+  setTab("ia");
+  const t = TOOLS.find(x => x.id === id); if (!t) return iaHub();
+  const head = `<div class="crumb fade"><a href="#/ia">🧠 Herramientas IA</a><span>›</span><span>${t.t}</span></div>`;
+  if (!t.free && !unlocked()) { $("#vista").innerHTML = head + toolLock(t); return }
+  if (id === "escaner") {
+    $("#vista").innerHTML = head + `<div class="tool fade"><h2>🔍 Escáner de alimentos</h2><p class="sub">Escribe un alimento y Michi IA te dice si tu gato lo puede comer.</p>
+      <div class="scan-in"><input id="sq" placeholder="Ej.: pollo, cebolla, atún…" autocomplete="off"><button class="btn" id="sb" style="padding:10px 16px">Analizar</button></div>
+      <div class="chips">${["pollo","cebolla","atún","huevo","leche","calabaza","chocolate","sardina"].map(w => `<button>${w}</button>`).join("")}</div>
+      <div id="sr"></div><p class="nota">Orientación general. Si tu gato tiene alguna enfermedad, consulta a tu veterinario.</p></div>`;
+    const go = () => { const q = sinAcento($("#sq").value); if (!q) return;
+      $("#sr").innerHTML = `<div class="term mono">analizando "${esc($("#sq").value)}"…</div>`;
+      setTimeout(() => { const r = ALIM.find(a => q.includes(a[0]) || a[0].includes(q));
+        const ic = {si:"✅", mod:"⚠️", no:"⛔"};
+        $("#sr").innerHTML = r ? `<div class="verd ${r[1]} fade"><span class="big">${ic[r[1]]}</span><div><b>${r[2]}</b><span style="color:#cfd6ee;font-size:14px">${r[3]}</span></div></div>`
+          : `<div class="verd mod fade"><span class="big">🤔</span><div><b>No lo tengo en mi base</b><span style="color:#cfd6ee;font-size:14px">Ante la duda, no se lo des y pregúntale a tu veterinario.</span></div></div>`; }, 650) };
+    $("#sb").onclick = go; $("#sq").onkeydown = e => { if (e.key === "Enter") go() };
+    $$(".chips button").forEach(b => b.onclick = () => { $("#sq").value = b.textContent; go() });
   }
-  const fav = favs.includes(b.id + "/" + i);
-  $("#vista").innerHTML = `<article class="leer fade">
-    <div class="rhead"><a href="#/${b.id}">${b.emoji} ${esc(b.titulo)}</a>${g ? `<span>›</span><span>${esc(g.nome)}</span>` : ""}<span style="margin-left:auto">${i + 1} / ${b.secoes.length}</span></div>
-    <h1>${esc(s.titulo)}</h1>${html}</article>
-  <nav class="nav"><span class="pr" style="width:${(i + 1) / b.secoes.length * 100}%"></span>
-    <a class="btn ghost" href="#/${b.id}/${Math.max(0, i - 1)}" ${i ? "" : 'style="visibility:hidden"'}>← <span>Anterior</span></a>
-    <button class="ib ${fav ? "on" : ""}" id="bFav" aria-label="Favorita">${fav ? "♥" : "♡"}</button>
-    ${i < b.secoes.length - 1 ? `<a class="btn" href="#/${b.id}/${i + 1}"><span>Siguiente</span> →</a>` : `<a class="btn" href="#/">Terminar ✓</a>`}
-  </nav>`;
-  document.querySelectorAll("li.chk").forEach(li => { if (marc[li.dataset.k]) li.classList.add("on");
-    li.onclick = () => { li.classList.toggle("on"); const m = st.get("chk", {}); li.classList.contains("on") ? m[li.dataset.k] = 1 : delete m[li.dataset.k]; st.set("chk", m) } });
-  const lam = document.querySelector(".lam"); if (lam) lam.onclick = () => abrirZoom(lam.dataset.z);
-  document.querySelectorAll(".cont figure img").forEach(im => im.onclick = () => abrirZoom(im.src));
-  $("#bFav").onclick = () => { const k = b.id + "/" + i; favs = favs.includes(k) ? favs.filter(x => x !== k) : [...favs, k]; st.set("favs", favs);
-    const on = favs.includes(k); $("#bFav").classList.toggle("on", on); $("#bFav").textContent = on ? "♥" : "♡" };
-  window.scrollTo({top: 0});
+  if (id === "porciones") {
+    $("#vista").innerHTML = head + `<div class="tool fade"><h2>🧮 Calculadora de porciones</h2><p class="sub">Mueve los controles y mira al instante cuánto debe comer tu gato.</p>
+      <div class="fld"><label>Peso de tu gato <output id="cPo"></output></label><input type="range" id="cP" min="1" max="10" step="0.5" value="4"></div>
+      <div class="fld"><label>Perfil</label><div class="seg" id="cF"><button data-f="1.2" class="on">Adulto esterilizado<small>factor 1,2</small></button><button data-f="1.4">Adulto no esterilizado<small>factor 1,4</small></button><button data-f="1.0">Poco activo / tiende a engordar<small>factor 1,0</small></button><button data-f="2.5">Gatito en crecimiento<small>factor 2,5</small></button></div></div>
+      <div class="fld"><label>Calorías de la receta <output id="cKo"></output></label><input type="range" id="cK" min="80" max="250" step="5" value="150"></div>
+      <div class="fld"><label>Comidas al día <output id="cMo"></output></label><input type="range" id="cM" min="1" max="4" step="1" value="2"></div>
+      <div class="out3"><div><b id="rK">—</b><span>kcal / día</span></div><div><b id="rG">—</b><span>gramos / día</span></div><div><b id="rC">—</b><span>g por comida</span></div></div>
+      <p class="nota">Estimación inicial (70 × peso<sup>0,75</sup> × factor). Gatos enfermos, gestantes o lactantes: confirma con tu veterinario.</p></div>`;
+    let f = 1.2; const calc = () => { const p = +$("#cP").value, k = +$("#cK").value, m = +$("#cM").value, kcal = 70 * Math.pow(p, .75) * f, g = kcal / (k / 100);
+      $("#cPo").textContent = String(p).replace(".", ",") + " kg"; $("#cKo").textContent = k + " kcal/100 g"; $("#cMo").textContent = m;
+      $("#rK").textContent = Math.round(kcal); $("#rG").textContent = Math.round(g); $("#rC").textContent = Math.round(g / m) };
+    ["#cP", "#cK", "#cM"].forEach(s => $(s).oninput = calc);
+    $$("#cF button").forEach(b => b.onclick = () => { $$("#cF button").forEach(x => x.classList.remove("on")); b.classList.add("on"); f = +b.dataset.f; calc() }); calc();
+  }
+  if (id === "agua") {
+    $("#vista").innerHTML = head + `<div class="tool fade"><h2>💧 Monitor de hidratación</h2><p class="sub">Los gatos casi no sienten sed: muchos viven deshidratados sin que lo notemos.</p>
+      <div class="fld"><label>Peso de tu gato <output id="aPo"></output></label><input type="range" id="aP" min="1" max="10" step="0.5" value="4"></div>
+      <div class="fld"><label>Su comida es…</label><div class="seg" id="aF"><button data-h="0" class="on">Solo croquetas<small>casi sin agua</small></button><button data-h="0.5">Mitad húmeda<small>croquetas + natural</small></button><button data-h="0.75">Natural / húmeda<small>mucha agua en la comida</small></button><button data-h="0.25">Croquetas + sobrecito<small>un poco húmeda</small></button></div></div>
+      <div class="out3"><div><b id="aT">—</b><span>ml / día total</span></div><div><b id="aB">—</b><span>ml a beber</span></div><div><b id="aV">—</b><span>vasos de 250 ml</span></div></div>
+      <div class="cont" style="margin-top:14px"><h3>Trucos para que tome más agua</h3><ul>
+        <li class="chk" data-k="agua1">Pon el agua lejos de su plato de comida y de su arenero.</li>
+        <li class="chk" data-k="agua2">Usa platos anchos y bajos (no le gusta que sus bigotes toquen los bordes).</li>
+        <li class="chk" data-k="agua3">Coloca 2 o 3 bebederos en distintos lugares de la casa.</li>
+        <li class="chk" data-k="agua4">Cambia el agua todos los días; mucho gatos prefieren agua en movimiento.</li>
+        <li class="chk" data-k="agua5">Las recetas húmedas y caseras del club aportan mucha agua.</li></ul></div>
+      <p class="nota">Referencia general: unos 50 ml de agua por kg al día, sumando la que trae la comida.</p></div>`;
+    let h = 0; const calc = () => { const p = +$("#aP").value, tot = 50 * p, beber = tot * (1 - h);
+      $("#aPo").textContent = String(p).replace(".", ",") + " kg"; $("#aT").textContent = Math.round(tot); $("#aB").textContent = Math.round(beber); $("#aV").textContent = (beber / 250).toFixed(1).replace(".", ",") };
+    $("#aP").oninput = calc; $$("#aF button").forEach(b => b.onclick = () => { $$("#aF button").forEach(x => x.classList.remove("on")); b.classList.add("on"); h = +b.dataset.h; calc() }); calc();
+    ligarChk();
+  }
+  if (id === "transicion") {
+    const D = [[1,25],[2,25],[3,50],[4,50],[5,75],[6,75],[7,100]];
+    $("#vista").innerHTML = head + `<div class="tool fade"><h2>📅 Plan de transición 7 días</h2><p class="sub">Cambiar de golpe puede causar vómito o diarrea. Así se hace poco a poco:</p>
+      <div class="plan">${D.map(([d, n]) => `<div class="dia"><b>DÍA ${d}</b><div class="mix"><i class="n" style="width:${n}%">${n}% natural</i>${n < 100 ? `<i class="v" style="width:${100 - n}%">${100 - n}%</i>` : ""}</div></div>`).join("")}</div>
+      <div class="cont" style="margin-top:14px"><h3>Reglas de oro</h3><ul>
+        <li class="chk" data-k="tr1">Empieza con una receta del Bloque 1 (comidas ligeras) de la Guía.</li>
+        <li class="chk" data-k="tr2">Sirve la comida a temperatura ambiente, nunca fría del refri.</li>
+        <li class="chk" data-k="tr3">Si hay vómito o diarrea, regresa al paso anterior unos días.</li>
+        <li class="chk" data-k="tr4">Algunos gatos necesitan 10 a 14 días: respeta su ritmo.</li>
+        <li class="chk" data-k="tr5">Gatos enfermos o renales: haz la transición con tu veterinario.</li></ul></div></div>`;
+    ligarChk();
+  }
+  window.scrollTo({top:0});
+}
+function ligarChk(){ $$("li.chk").forEach(li => { const m = st.get("chk", {}); if (m[li.dataset.k]) li.classList.add("on");
+  li.onclick = () => { li.classList.toggle("on"); const n = st.get("chk", {}); li.classList.contains("on") ? n[li.dataset.k] = 1 : delete n[li.dataset.k]; st.set("chk", n) } }) }
+
+/* ---------- video ---------- */
+/* reproductor propio: sin controles de YouTube y con una capa que bloquea los clics hacia YouTube */
+const IC = {play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>', pause:'<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg>',
+  vol:'<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>', mute:'<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4zm12-.5 1.4-1.4L19.5 9.2l2.1-2.1L23 8.5l-2.1 2.1 2.1 2.1-1.4 1.4-2.1-2.1-2.1 2.1-1.4-1.4 2.1-2.1z"/></svg>'};
+let YTP = null, ytListo = null, tick = null;
+function cargarYT(){
+  if (ytListo) return ytListo;
+  ytListo = new Promise(res => { window.onYouTubeIframeAPIReady = () => res(); const sc = document.createElement("script"); sc.src = "https://www.youtube.com/iframe_api"; document.head.appendChild(sc) });
+  return ytListo;
+}
+const mmss = t => { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0") };
+function pintarCtl(){
+  if (!YTP || !YTP.getPlayerState) return;
+  const st_ = YTP.getPlayerState(), tocando = st_ === 1 || st_ === 3;
+  $("#cPlay").innerHTML = tocando ? IC.pause : IC.play;
+  $("#cMute").innerHTML = YTP.isMuted && YTP.isMuted() ? IC.mute : IC.vol;
+  const d = YTP.getDuration ? YTP.getDuration() : 0, c = YTP.getCurrentTime ? YTP.getCurrentTime() : 0;
+  if (!$("#cSeek")._arr) $("#cSeek").value = d ? Math.round(c / d * 1000) : 0;
+  $("#cTime").textContent = mmss(c) + " / " + mmss(d);
+  const pz = $("#vBox .pausa"); if (pz) pz.classList.toggle("off", tocando || st_ === -1 || st_ === 5);
+  const sp = $("#vBox .spin"); if (sp) sp.hidden = st_ !== 3 && st_ !== -1;
+}
+function alternar(){ if (!YTP || !YTP.getPlayerState) return; const s_ = YTP.getPlayerState(); s_ === 1 || s_ === 3 ? YTP.pauseVideo() : YTP.playVideo(); setTimeout(pintarCtl, 120) }
+function cerrarPlayer(){ clearInterval(tick); tick = null; try { YTP && YTP.destroy && YTP.destroy() } catch (e) {} YTP = null; if (document.fullscreenElement) document.exitFullscreen().catch(() => {}) }
+async function verVideo(k){
+  const v = vid(k); if (!v) return;
+  if (!canSee(v)) return abrirClave(v.t);
+  const yt = v.yt || (VAULT && VAULT.yt[k]); if (!yt) return abrirClave(v.t);
+  $("#vT").textContent = v.t; $("#vD").textContent = v.d;
+  cerrarPlayer();
+  $("#vBox").innerHTML = `<div id="ytp"></div><div class="shield" title=""></div>
+    <div class="pausa off" style="background-image:url('${v.img}')"><span class="playbtn">${PLAY}</span></div>
+    <div class="spin"><i></i></div>
+    <button class="ib fsx" aria-label="Salir de pantalla completa">✕</button>`;
+  $("#vBox").oncontextmenu = e => e.preventDefault();
+  $("#vBox .shield").onclick = alternar; $("#vBox .pausa").onclick = alternar;
+  $("#vBox .fsx").onclick = e => { e.stopPropagation(); document.exitFullscreen && document.exitFullscreen() };
+  $("#cPlay").onclick = alternar;
+  $("#cMute").onclick = () => { if (!YTP) return; YTP.isMuted() ? YTP.unMute() : YTP.mute(); setTimeout(pintarCtl, 80) };
+  const sk = $("#cSeek"); sk.value = 0;
+  sk.onpointerdown = () => sk._arr = true;
+  sk.onchange = () => { sk._arr = false; if (YTP && YTP.getDuration) { YTP.seekTo(YTP.getDuration() * sk.value / 1000, true); setTimeout(pintarCtl, 150) } };
+  const box = $("#vBox"), fsOk = box.requestFullscreen || box.webkitRequestFullscreen;
+  $("#cFs").hidden = !fsOk;
+  $("#cFs").onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else (box.requestFullscreen || box.webkitRequestFullscreen).call(box) };
+  $("#cPlay").innerHTML = IC.pause; $("#cMute").innerHTML = IC.vol; $("#cTime").textContent = "0:00 / 0:00";
+  $("#ovVid").classList.add("on");
+  await cargarYT();
+  if (!$("#ovVid").classList.contains("on") || !$("#ytp")) return;
+  YTP = new YT.Player("ytp", { videoId: yt, host: "https://www.youtube-nocookie.com",
+    playerVars: { autoplay: 1, controls: 0, disablekb: 1, fs: 0, rel: 0, modestbranding: 1, playsinline: 1, iv_load_policy: 3, showinfo: 0, cc_load_policy: 0 },
+    events: { onReady: e => { e.target.playVideo(); pintarCtl() },
+      onStateChange: e => { pintarCtl(); if (e.data === 0) { vistos[k] = 1; st.set("vistos", vistos); const pz = $("#vBox .pausa"); if (pz) pz.classList.remove("off") } } } });
+  tick = setInterval(pintarCtl, 300);
+  $("#vDone").onclick = () => { vistos[k] = 1; st.set("vistos", vistos); cerrar(); toast("✓ Clase marcada como vista"); ruta() };
+  vistos[k] = vistos[k] || 0.5; st.set("vistos", vistos);
+  $("#ovVid").classList.add("on");
 }
 
-/* ---------- CALCULADORA ---------- */
-function calculadoraHTML(){
-  return `<div class="calc fade" id="herr">
-    <h2>🧮 Calculadora de porciones</h2><p class="sub">Mueve los controles y mira al instante cuánto debe comer tu gato.</p>
-    <div class="fld"><label>Peso de tu gato <output id="cPo">4 kg</output></label><input type="range" id="cP" min="1" max="10" step="0.5" value="4"></div>
-    <div class="fld"><label>Perfil</label><div class="seg" id="cF">
-      <button data-f="1.2" class="on">Adulto esterilizado<small>factor 1,2</small></button>
-      <button data-f="1.4">Adulto no esterilizado<small>factor 1,4</small></button>
-      <button data-f="1.0">Poco activo / tiende a engordar<small>factor 1,0</small></button>
-      <button data-f="2.5">Gatito en crecimiento<small>factor 2,5</small></button></div></div>
-    <div class="fld"><label>Calorías de la receta <output id="cKo">150 kcal / 100 g</output></label><input type="range" id="cK" min="80" max="250" step="5" value="150"></div>
-    <div class="fld"><label>Comidas al día <output id="cMo">2</output></label><input type="range" id="cM" min="1" max="4" step="1" value="2"></div>
-    <div class="res3"><div><b id="rK">—</b><span>kcal / día</span></div><div><b id="rG">—</b><span>gramos / día</span></div><div><b id="rC">—</b><span>g por comida</span></div></div>
-    <p class="aviso">Estimación inicial (RER = 70 × peso<sup>0,75</sup> × factor). Gatos con enfermedades, gestantes o lactantes: confirma siempre con tu veterinario.</p>
-  </div>`;
+/* ---------- clave ---------- */
+function abrirClave(motivo){
+  const ok = unlocked();
+  $("#keyBody").innerHTML = ok
+    ? `<div class="term mono"><span class="ok">✓ ACCESO TOTAL ACTIVO</span>\nTodo el contenido del club está desbloqueado en este dispositivo.</div><button class="btn full" style="margin-top:12px" data-close>Seguir disfrutando</button>`
+    : `${motivo ? `<p style="margin:0 0 8px;color:var(--muted);font-size:13.5px">🔒 <b style="color:#fff">${esc(motivo)}</b> es contenido premium.</p>` : ""}
+      <p style="margin:0;color:var(--muted);font-size:14px">Escribe la clave que recibiste por WhatsApp después de tu aportación (desde <b style="color:#fff">$100 MXN</b>).</p>
+      <div class="field" id="kf"><span>🔑</span><input id="kIn" placeholder="TU CLAVE" autocomplete="off" autocapitalize="characters" spellcheck="false"><button class="btn" id="kGo" style="padding:11px 16px">Liberar</button></div>
+      <div class="term mono" id="kT">&gt; esperando clave_</div>
+      <p class="nota">¿Aún no tienes tu clave? Haz tu aportación por SPEI u OXXO y envía tu comprobante por WhatsApp: te la mandamos al instante.</p>`;
+  $("#ovKey").classList.add("on");
+  if (!ok) { setTimeout(() => $("#kIn").focus(), 250); $("#kGo").onclick = probar; $("#kIn").onkeydown = e => { if (e.key === "Enter") probar() } }
 }
-function ligarCalc(){
-  let f = 1.2;
-  const calc = () => {
-    const p = +$("#cP").value, k = +$("#cK").value, m = +$("#cM").value;
-    const kcal = 70 * Math.pow(p, .75) * f, g = kcal / (k / 100);
-    $("#cPo").textContent = String(p).replace(".", ",") + " kg"; $("#cKo").textContent = k + " kcal / 100 g"; $("#cMo").textContent = m;
-    $("#rK").textContent = Math.round(kcal); $("#rG").textContent = Math.round(g); $("#rC").textContent = Math.round(g / m);
-  };
-  ["#cP", "#cK", "#cM"].forEach(s => $(s).oninput = calc);
-  document.querySelectorAll("#cF button").forEach(bt => bt.onclick = () => { document.querySelectorAll("#cF button").forEach(x => x.classList.remove("on")); bt.classList.add("on"); f = +bt.dataset.f; calc() });
-  calc();
-}
-
-/* ---------- MENÚ LATERAL ---------- */
-function abrirMenu(){
-  const [, l, s] = location.hash.split("/"); const b = libro(l); if (!b) return;
-  $("#drT").textContent = b.titulo;
-  $("#drL").innerHTML = `<a href="#/">🏠 Inicio · todos los materiales</a>` + b.grupos.map(g => `<h4>${esc(g.nome)}</h4>` + g.secoes.map(i => `<a href="#/${b.id}/${i}" class="${String(i) === s ? "cur" : ""}">${vistos[b.id + "/" + i] ? "✓ " : ""}${esc(b.secoes[i].titulo)}</a>`).join("")).join("");
-  $("#dr").classList.add("on"); $("#ov").classList.add("on");
-  const c = $("#drL .cur"); if (c) c.scrollIntoView({block: "center"});
-}
-function cerrar(){ ["#dr", "#ov", "#busca"].forEach(s => $(s).classList.remove("on")) }
-
-/* ---------- BUSCADOR ---------- */
-const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-const IDX = [];
-L.forEach(b => b.secoes.forEach((s, i) => IDX.push({b, i, s, t: norm(s.titulo), x: norm(textoDe(s)), raw: textoDe(s)})));
-function abrirBusca(){ $("#busca").classList.add("on"); $("#ov").classList.add("on"); $("#q").value = ""; buscar(); setTimeout(() => $("#q").focus(), 50) }
-function buscar(){
-  const q = norm($("#q").value.trim());
-  if (!q) { $("#qR").innerHTML = `<div class="chips">${["pollo", "pescado", "calabaza", "sardina", "premios", "renal", "sarro", "estrés", "porción", "conservar"].map(w => `<button>${w}</button>`).join("")}</div>`;
-    document.querySelectorAll(".chips button").forEach(bt => bt.onclick = () => { $("#q").value = bt.textContent; buscar() }); return }
-  const ws = q.split(/\s+/);
-  const r = IDX.map(e => { let p = 0; for (const w of ws) { if (e.t.includes(w)) p += 3; else if (e.x.includes(w)) p += 1; else return null } return {e, p} })
-    .filter(Boolean).sort((a, b) => b.p - a.p).slice(0, 40);
-  if (!r.length) { $("#qR").innerHTML = `<div class="vacio">No encontramos “${esc($("#q").value)}”. Prueba con otro ingrediente 🐾</div>`; return }
-  $("#qR").innerHTML = r.map(({e}) => { const pos = norm(e.raw).indexOf(ws[0]); const sn = pos >= 0 ? e.raw.slice(Math.max(0, pos - 30), pos + 70) : "";
-    return `<a href="#/${e.b.id}/${e.i}"><img src="${miniatura(e.s) || e.b.capa}" alt="" loading="lazy"><div style="min-width:0"><b>${esc(e.s.titulo)}</b><small>${e.b.emoji} ${esc(e.b.titulo)}${sn ? " · …" + esc(sn) + "…" : ""}</small></div></a>` }).join("");
+const espera = ms => new Promise(r => setTimeout(r, ms));
+async function probar(){
+  const v = $("#kIn").value; if (!v.trim()) return;
+  const T = $("#kT"); $("#kGo").disabled = true;
+  T.textContent = "> verificando clave…"; await espera(450);
+  T.textContent += "\n> desencriptando contenido ███▒▒▒";
+  try {
+    const data = await abrir(v); await espera(500);
+    VAULT = data; st.set("k", normaliza(v));
+    T.innerHTML = esc(T.textContent) + `\n<span class="ok">> ✓ acceso concedido · ${C.videos.length} clases · ${C.libros.length} materiales · ${TOOLS.length} herramientas</span>`;
+    marcaAcceso(); await espera(900); cerrar(); toast("✦ ¡Acceso total desbloqueado! Bienvenida al club 💛"); ruta();
+  } catch (e) {
+    await espera(300);
+    T.innerHTML = esc(T.textContent) + `\n<span class="err">> ✕ clave incorrecta. Revisa que esté igual a la que te enviamos.</span>`;
+    $("#kf").classList.remove("shake"); void $("#kf").offsetWidth; $("#kf").classList.add("shake");
+  }
+  $("#kGo").disabled = false;
 }
 
-/* ---------- ZOOM ---------- */
-function abrirZoom(src){ $("#zI").src = src; $("#zoom").classList.add("on"); document.body.style.overflow = "hidden" }
-function cerrarZoom(){ $("#zoom").classList.remove("on"); document.body.style.overflow = "" }
+/* ---------- typing IA ---------- */
+let typT;
+function escribir(){
+  const el = $("#typing"); if (!el) return; clearTimeout(typT);
+  const libres = C.videos.filter(v => v.free).length;
+  const frases = unlocked()
+    ? ["Hola 👋 Tu acceso total está activo.", "Te recomiendo empezar por el Bloque 1 de la Guía.", "Prueba el plan de transición de 7 días 📅"]
+    : ["Hola 👋 Soy Michi, la IA del club.", `Analicé tu acceso: ${libres} clases libres listas.`, "Empieza por la Clase 1, aquí a la derecha 👉", "Con tu clave desbloqueas todo el club 🔓"];
+  let f = 0, c = 0, borrando = false;
+  const paso = () => { const t = Array.from(frases[f]);
+    if (!borrando) { c++; el.innerHTML = esc(t.slice(0, c).join("")) + '<span class="cur"></span>'; if (c >= t.length) { borrando = true; typT = setTimeout(paso, 2200); return } typT = setTimeout(paso, 34) }
+    else { c -= 2; if (c <= 0) { c = 0; borrando = false; f = (f + 1) % frases.length } el.innerHTML = esc(t.slice(0, c).join("")) + '<span class="cur"></span>'; typT = setTimeout(paso, 14) } };
+  paso();
+}
 
-/* ---------- RUTAS ---------- */
+/* ---------- partículas ---------- */
+(function(){ const cv = $("#fx"), x = cv.getContext("2d"); if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  let W, H, P = []; const N = innerWidth < 700 ? 28 : 55;
+  const rs = () => { W = cv.width = innerWidth * devicePixelRatio; H = cv.height = innerHeight * devicePixelRatio; cv.style.width = innerWidth + "px"; cv.style.height = innerHeight + "px" };
+  rs(); addEventListener("resize", rs);
+  for (let i = 0; i < N; i++) P.push({x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: Math.random() * 1.6 + .4});
+  const L = 130 * devicePixelRatio;
+  (function f(){ x.clearRect(0, 0, W, H);
+    for (const p of P) { p.x += p.vx * devicePixelRatio; p.y += p.vy * devicePixelRatio; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
+      x.fillStyle = "rgba(127,246,255,.7)"; x.beginPath(); x.arc(p.x, p.y, p.r * devicePixelRatio, 0, 7); x.fill() }
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) { const a = P[i], b = P[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < L) { x.strokeStyle = `rgba(139,92,255,${(1 - d / L) * .35})`; x.lineWidth = devicePixelRatio * .7; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke() } }
+    if (!document.hidden) requestAnimationFrame(f); else setTimeout(() => requestAnimationFrame(f), 500) })();
+})();
+
+/* ---------- navegación ---------- */
+function zoom(src){ $("#zI").src = src; $("#zoom").classList.add("on") }
+function cerrar(){ $$(".ov").forEach(o => o.classList.remove("on")); cerrarPlayer(); $("#vBox").innerHTML = "" }
 function ruta(){
-  cerrar(); cerrarZoom();
-  const [, l, s] = location.hash.split("/"); const b = libro(l);
-  if (!b) inicio();
-  else if (s === "herramienta") { verLibro(b); setTimeout(() => { const h = $("#herr"); if (h) h.scrollIntoView({behavior: "smooth"}) }, 60) }
-  else if (s === undefined || s === "") { verLibro(b); window.scrollTo({top: 0}) }
-  else verSeccion(b, +s);
+  const p = location.hash.replace(/^#\/?/, "").split("/");
+  if (p[0] === "clases") clases();
+  else if (p[0] === "biblioteca") biblioteca();
+  else if (p[0] === "ia") p[1] ? verTool(p[1]) : iaHub();
+  else if (p[0] === "libro") p[2] !== undefined && p[2] !== "" ? verSeccion(p[1], +p[2]) : verLibro(p[1]);
+  else inicio();
+  if (!["libro"].includes(p[0]) && !p[1]) window.scrollTo({top:0});
 }
-window.addEventListener("hashchange", ruta);
-$("#bBuscar").onclick = abrirBusca; $("#bMenu").onclick = abrirMenu;
-$("#ov").onclick = cerrar; $("#drX").onclick = cerrar; $("#qX").onclick = cerrar;
-$("#q").oninput = buscar; $("#zX").onclick = cerrarZoom; $("#zoom").onclick = e => { if (e.target.id === "zoom") cerrarZoom() };
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") { cerrar(); cerrarZoom() }
-  if (e.key === "/" && document.activeElement !== $("#q")) { e.preventDefault(); abrirBusca() }
-  const [, l, s] = location.hash.split("/"); const b = libro(l);
-  if (b && s !== undefined && s !== "" && !$("#busca").classList.contains("on")) {
-    if (e.key === "ArrowRight" && +s < b.secoes.length - 1) location.hash = `#/${l}/${+s + 1}`;
-    if (e.key === "ArrowLeft" && +s > 0) location.hash = `#/${l}/${+s - 1}`;
-  }
+document.addEventListener("click", e => {
+  const v = e.target.closest("[data-v]"); if (v) { verVideo(v.dataset.v); return }
+  if (e.target.closest("[data-key]")) { abrirClave(); return }
+  const t = e.target.closest("[data-tier]");
+  if (t) { aporte = +t.dataset.tier; st.set("aporte", aporte); $$(".tier").forEach(x => x.classList.toggle("on", x === t));
+    $$(".tuap").forEach(x => x.textContent = "$" + aporte + " MXN"); return }
+  if (e.target.closest("[data-close]") || e.target.classList.contains("ov")) cerrar();
 });
-ruta();
+$("#chipAcc").onclick = () => abrirClave(); $("#tabKey").onclick = () => abrirClave();
+$("#zX").onclick = () => $("#zoom").classList.remove("on");
+document.addEventListener("keydown", e => { if (e.key === "Escape") { cerrar(); $("#zoom").classList.remove("on") } });
+addEventListener("hashchange", ruta);
+(async () => { const k = st.get("k", null); if (k) { try { VAULT = await abrir(k) } catch (e) { st.set("k", null) } } marcaAcceso(); ruta() })();
 </script>
 </body>
 </html>
